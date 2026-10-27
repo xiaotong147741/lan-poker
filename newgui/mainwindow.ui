@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>770</width>
+    <height>618</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1f5c3d, stop:1 #143c28);
+}
+QLabel {
+    color: #f0f0f0;
+}
+QLabel#info {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffd166;
+}
+QLabel#seat0, QLabel#seat1, QLabel#seat2, QLabel#seat3, QLabel#seat4,
+QLabel#seat5, QLabel#seat6, QLabel#seat7, QLabel#seat8 {
+    background-color: rgba(0, 0, 0, 110);
+    border-radius: 8px;
+    padding: 3px 8px;
+    font-weight: bold;
+}
+QLabel#b0, QLabel#b1, QLabel#b2, QLabel#b3, QLabel#b4,
+QLabel#hole1, QLabel#hole2,
+QLabel#h0a, QLabel#h0b, QLabel#h1a, QLabel#h1b, QLabel#h2a, QLabel#h2b,
+QLabel#h3a, QLabel#h3b, QLabel#h4a, QLabel#h4b, QLabel#h5a, QLabel#h5b,
+QLabel#h6a, QLabel#h6b, QLabel#h7a, QLabel#h7b, QLabel#h8a, QLabel#h8b {
+    background-color: #fdfdfd;
+    color: #222222;
+    border: 1px solid #bbbbbb;
+    border-radius: 6px;
+    font-weight: bold;
+    qproperty-alignment: AlignCenter;
+}
+QLabel#handrank0, QLabel#handrank1, QLabel#handrank2, QLabel#handrank3,
+QLabel#handrank4, QLabel#handrank5, QLabel#handrank6, QLabel#handrank7,
+QLabel#handrank8 {
+    color: #ffd166;
+    font-weight: bold;
+}
+QLabel#mySeat, QLabel#potNum, QLabel#curNum, QLabel#myChips, QLabel#myBet {
+    color: #ffd166;
+    font-weight: bold;
+}
+QPushButton#fold {
+    background-color: #c0392b; color: white; border-radius: 6px; padding: 4px 10px;
+}
+QPushButton#fold:hover { background-color: #e74c3c; }
+QPushButton#check {
+    background-color: #7f8c8d; color: white; border-radius: 6px; padding: 4px 10px;
+}
+QPushButton#check:hover { background-color: #95a5a6; }
+QPushButton#call {
+    background-color: #2980b9; color: white; border-radius: 6px; padding: 4px 10px;
+}
+QPushButton#call:hover { background-color: #3498db; }
+QPushButton#raise {
+    background-color: #e67e22; color: white; border-radius: 6px; padding: 4px 10px;
+}
+QPushButton#raise:hover { background-color: #f39c12; }
+QPushButton:disabled {
+    background-color: #555555; color: #999999;
+}
+QSpinBox#raiseTo {
+    background-color: #ffffff; border-radius: 4px; padding: 2px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="info">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>等待开始</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>140</y>
+      <width>142</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="potRow">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>底池：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="potNum">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>140</y>
+      <width>161</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="curRow">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>当前注：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="curNum">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>500</y>
+      <width>524</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="actBTN">
+     <item>
+      <widget class="QPushButton" name="fold">
+       <property name="text">
+        <string>弃牌</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="check">
+       <property name="text">
+        <string>过牌</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="call">
+       <property name="text">
+        <string>跟注</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="raise">
+       <property name="text">
+        <string>加注</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="raiseTo"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>430</y>
+      <width>461</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="card">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>手牌：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="hole1">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="hole2">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>筹码：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="myChips">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>本轮已下：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="myBet">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="actText">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>230</y>
+      <width>434</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="boardcard">
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>公牌：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="b0">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="b1">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="b2">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="b3">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="b4">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>510</y>
+      <width>131</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="seatRow">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Your seat：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="mySeat">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>120</y>
+      <width>111</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow1">
+     <item>
+      <widget class="QLabel" name="seat1">
+       <property name="text">
+        <string>player1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips1">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act1">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="h1a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h1b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank1">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>10</y>
+      <width>111</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow2">
+     <item>
+      <widget class="QLabel" name="seat2">
+       <property name="text">
+        <string>player2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips2">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act2">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="h2a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h2b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank2">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>10</y>
+      <width>111</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow3">
+     <item>
+      <widget class="QLabel" name="seat3">
+       <property name="text">
+        <string>player3</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips3">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act3">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLabel" name="h3a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h3b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank3">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>100</y>
+      <width>111</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow4">
+     <item>
+      <widget class="QLabel" name="seat4">
+       <property name="text">
+        <string>player4</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips4">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act4">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="h4a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h4b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank4">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>250</y>
+      <width>111</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow5">
+     <item>
+      <widget class="QLabel" name="seat5">
+       <property name="text">
+        <string>player5</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips5">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act5">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="h5a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h5b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank5">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_7">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>300</y>
+      <width>101</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow6">
+     <item>
+      <widget class="QLabel" name="seat6">
+       <property name="text">
+        <string>player6</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips6">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act6">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="h6a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h6b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank6">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_8">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>300</y>
+      <width>101</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow7">
+     <item>
+      <widget class="QLabel" name="seat7">
+       <property name="text">
+        <string>player7</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips7">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act7">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QLabel" name="h7a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h7b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank7">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_9">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>300</y>
+      <width>101</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow8">
+     <item>
+      <widget class="QLabel" name="seat8">
+       <property name="text">
+        <string>player8</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips8">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act8">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QLabel" name="h8a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h8b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank8">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>22</x>
+      <y>250</y>
+      <width>111</width>
+      <height>113</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playerRow0">
+     <item>
+      <widget class="QLabel" name="seat0">
+       <property name="text">
+        <string>player0</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="chips0">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="act0">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="h0a">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="h0b">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="handrank0">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>180</y>
+      <width>181</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_10">
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>当前最小加注尺度：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="miniraise">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>770</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
